@@ -6,7 +6,7 @@ from django.contrib import messages
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'pages-login.html')
 
 
 def home(request):
@@ -24,7 +24,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('index')
+            return redirect('home')
         else:
             messages.info(request, 'Tài khoản hoặc mật khẩu sai')
             return redirect('index')

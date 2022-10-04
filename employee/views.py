@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import WorkTime, Employee
 from django.contrib import messages
+from .forms import EmployeeForm
 # Create your views here.
 
 
@@ -66,6 +67,7 @@ def add_employee(request):
 
     employees = Employee.objects.values('gender').distinct()
     work_times = WorkTime.objects.values('id', 'name').distinct()
+
     context = {
         'employees': employees,
         'work_times': work_times

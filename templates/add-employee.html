@@ -24,8 +24,14 @@
               <h5 class="card-title">Tạo nhân viên</h5>
 
               <!-- General Form Elements -->
-              <form action="" method="POST">
+              <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Ảnh đại diện:</label>
+                  <div class="col-sm-10">
+                    <input type="file" id="cover_image" name="cover_image" class="form-control">
+                  </div>
+                </div>
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Tên:</label>
                   <div class="col-sm-10">
@@ -39,7 +45,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label" for="time">Giới tính</label>
+                  <label class="col-sm-2 col-form-label" for="time">Giới tính:</label>
                   <div class="col-sm-10" style=" margin-left: 170px;">
                     {% for employee in employees %}
                     <label class="col-sm-2 col-form-label" for="{{employee.gender}}">
@@ -63,7 +69,7 @@
                 </div>
                 <div class="row mb-3">
                   <div class="col-sm-10">
-                    <label class="col-sm-2 col-form-label" for="time">Giờ làm việc</label>
+                    <label class="col-sm-2 col-form-label" for="time">Giờ làm việc:</label>
                     <div style=" margin-left: 170px;">
                       {% for work_time in work_times %}
                       <label class="col-sm-2 col-form-label" for="{{work_time.name}}">{{work_time.name}}</label> 
