@@ -1,0 +1,84 @@
+{% include 'base.html' %}
+{% block content%}
+{% load static %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <a href="add_employee"><h5>TẠO NHÂN VIÊN</h5></a><br> 
+      <div class="row">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Danh sách nhân viên</h5>
+            <!-- Table with hoverable rows -->
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">STT</th>
+                  <th scope="col">Tên</th>
+                  <th scope="col">Tuổi</th>
+                  <th scope="col">Giới tính</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Điện thoại</th>
+                  <th scope="col">Giờ làm việc</th>
+                  <th scope="col">Xóa</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for employee in employees %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.age}}</td>
+                  <td>{{employee.gender}}</td>
+                  <td>{{employee.email}}</td>
+                  <td>{{employee.phone}}</td>
+                  <td>{{employee.work_time}}</td>
+                  <th scope="col">
+                      <a href="{% url 'delete_employee' employee.id %}"><i class="ri-delete-bin-6-line"></i></a>
+                  </th>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      </div>
+        {% for employee in employees %}
+            <!-- Sales Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body"><br>
+                  <div class="d-flex align-items-center">
+                    <div class="">
+                      <img src="/media/{{employee.cover_image}}" alt="vatar employee" width="118" height="116">
+                    </div>
+                    <div class="ps-3">
+                      <h6>{{employee.name}}</h6>
+                      <span>{{employee.email}}</span><br>
+                      <span>{{employee.phone}}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+            {% endfor %}
+
+      </div>
+      
+                
+                  <!-- End Table with hoverable rows -->
+      </div>
+    </section>
+
+{% endblock content %}

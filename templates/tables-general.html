@@ -1,0 +1,66 @@
+{% include 'base.html' %}
+{% block content %}
+{% load static %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>General Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Khung giờ làm việc</h5>
+              <h5 class="card-title"><a href="{% url 'add_work_time' %}">TẠO KHUNG GIỜ</a></h5>
+
+              <!-- Table with stripped rows -->
+              <!-- view work time -->
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Ngày trong Tuần</th>
+                    <th scope="col">Làm việc từ</th>
+                    <th scope="col">Làm việc đến</th>
+                    <th scope="col">Ngày bắt đầu</th>
+                    <th scope="col">Ngày kết thúc</th>
+                    <th scope="col">Thời gian trong ngày</th>
+                    <th scope="col">Xóa</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for work_time in work_times %}
+                  <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{work_time.name}}</td>
+                    <td>{{work_time.day}}</td>
+                    <td>{{work_time.start_time}}</td>
+                    <td>{{work_time.end_time}}</td>
+                    <td>{{work_time.start_day}}</td>
+                    <td>{{work_time.end_day}}</td>
+                    <td>{{work_time.time}}</td>
+                    <th scope="col">
+                      <a href="{% url 'delete_work_time' work_time.id %}"><i class="ri-delete-bin-6-line"></i></a>
+                    </th>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+{% endblock content %}

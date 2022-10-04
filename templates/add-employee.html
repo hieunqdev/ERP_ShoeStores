@@ -1,0 +1,92 @@
+{% include 'base.html' %}
+{% block content%}
+{% load static %}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Form Elements</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Forms</li>
+          <li class="breadcrumb-item active">Elements</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Tạo nhân viên</h5>
+
+              <!-- General Form Elements -->
+              <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Tên:</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="name" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Tuổi:</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="age" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="time">Giới tính</label>
+                  <div class="col-sm-10" style=" margin-left: 170px;">
+                    {% for employee in employees %}
+                    <label class="col-sm-2 col-form-label" for="{{employee.gender}}">
+                      {{employee.gender}}
+                    </label>
+                    <input type="radio" name="gender" id="{{employee.gender}}" value="{{employee.gender}}"><br>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Email:</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="email" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Điện thoai:</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="phone" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-10">
+                    <label class="col-sm-2 col-form-label" for="time">Giờ làm việc</label>
+                    <div style=" margin-left: 170px;">
+                      {% for work_time in work_times %}
+                      <label class="col-sm-2 col-form-label" for="{{work_time.name}}">{{work_time.name}}</label> 
+                      <input type="radio" name="work_time" id="{{work_time.name}}" value="{{work_time.id}}"> <br>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                {% for message in messages %}
+                <h5 class="text-center" style="color: red;">{{message}}</h5>
+                {% endfor %}
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+</main><!-- End #main -->
+
+{% endblock content %}
