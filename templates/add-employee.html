@@ -24,14 +24,8 @@
               <h5 class="card-title">Tạo nhân viên</h5>
 
               <!-- General Form Elements -->
-              <form action="" method="POST" enctype="multipart/form-data">
+              <form action="" method="POST">
                 {% csrf_token %}
-                <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Ảnh đại diện:</label>
-                  <div class="col-sm-10">
-                    <input type="file" id="cover_image" name="cover_image" class="form-control">
-                  </div>
-                </div>
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Tên:</label>
                   <div class="col-sm-10">
@@ -47,12 +41,13 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label" for="time">Giới tính:</label>
                   <div class="col-sm-10" style=" margin-left: 170px;">
-                    {% for employee in employees %}
-                    <label class="col-sm-2 col-form-label" for="{{employee.gender}}">
-                      {{employee.gender}}
+                    <label class="col-sm-2 col-form-label" for="male">Nam
                     </label>
-                    <input type="radio" name="gender" id="{{employee.gender}}" value="{{employee.gender}}"><br>
-                    {% endfor %}
+                    <input type="radio" name="gender" id="male" value="Nam"><br>
+
+                    <label class="col-sm-2 col-form-label" for="female">Nữ
+                    </label>
+                    <input type="radio" name="gender" id="female" value="Nữ"><br>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -68,9 +63,10 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="col-sm-10">
-                    <label class="col-sm-2 col-form-label" for="time">Giờ làm việc:</label>
-                    <div style=" margin-left: 170px;">
+                  <label class="col-sm-2 col-form-label" for="time">Giờ làm việc:</label>
+                  <div class="col-sm-10" style=" margin-left: 170px;">
+                   
+                    <div>
                       {% for work_time in work_times %}
                       <label class="col-sm-2 col-form-label" for="{{work_time.name}}">{{work_time.name}}</label> 
                       <input type="radio" name="work_time" id="{{work_time.name}}" value="{{work_time.id}}"> <br>
@@ -79,7 +75,7 @@
                   </div>
                 </div>
                 {% for message in messages %}
-                <h5 class="text-center" style="color: red;">{{message}}</h5>
+                <h5 class="text-center" style="color: red;">{{message}}<a href="{% url 'view_employee' %}"> | Xem khung giờ làm việc</a></h5>
                 {% endfor %}
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Lưu</button>

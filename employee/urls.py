@@ -10,8 +10,8 @@ urlpatterns = [
     path('add_work_time/', add_work_time, name='add_work_time'),
 
     # view employee
-    path('view_employee', view_employee, name='view_employee'),
+    path('view_employee/', view_employee, name='view_employee'),
     path('delete_employee(?P<int:pid>)/',
          delete_employee, name='delete_employee'),
-    path('add_employee', add_employee, name="add_employee"),
+    path('add_employee/', add_employee, name="add_employee"),
 ]

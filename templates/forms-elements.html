@@ -68,7 +68,8 @@
                   </div>
                 </div>
                 {% for message in messages %}
-                <h5 class="text-center" style="color: red;">{{message}}</h5>
+                <h5 class="text-center" style="color: red;">{{message}} <a href="{% url 'view_work_time' %}"> | Xem khung giờ làm việc</a></h5>
+                
                 {% endfor %}
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Lưu</button>
